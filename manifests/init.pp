@@ -33,7 +33,7 @@ class dnsupdate {
     path     => ['/bin', '/usr/bin'],
     command  => 'nsupdate /etc/nsupdate',
     provider => 'shell',
-    unless   => "grep $(nslookup $(hostname -f) |sed -n '/^Name/{n;s/.*: //p}') /etc/nsupdate && grep $(nslookup $(hostname -i)|egrep -o '^[0-9]+.[0-9]+.[0-9]+.[0-9]+') /etc/nsupdate",
+    unless   => "grep $(nslookup $(hostname -f) |sed -n '/^Name/{n;s/.*: //p}') /etc/nsupdate && grep $(nslookup $(hostname -I)|egrep -o '^[0-9]+.[0-9]+.[0-9]+.[0-9]+') /etc/nsupdate",
     require  => Package[$package],
   }
 }
